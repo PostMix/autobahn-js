@@ -373,8 +373,11 @@ var global = this;
    ab.CONNECTION_UNREACHABLE_SCHEDULED_RECONNECT = 5;
    ab.CONNECTION_LOST_SCHEDULED_RECONNECT = 6;
 
-   ab.Deferred = when.defer;
-   //ab.Deferred = jQuery.Deferred;
+	if (jQuery !== undefined) {
+		ab.Deferred = jQuery.Deferred;
+	} else {
+		ab.Deferred = when.defer;
+	}
 
    ab._construct = function (url, protocols) {
       if ("WebSocket" in root) {
